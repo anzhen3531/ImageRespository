@@ -1,0 +1,327 @@
+VERSION 120
+
+EDIT UG_GATEWAY_MAIN_MENUBAR
+
+MENU WT_RMB_CTX_MENU
+    
+    BUTTON WT_RMB_CHECKIN
+    LABEL 检入
+    MESSAGE 检入选定文档。
+    SENSITIVITY ON
+    ACTIONS wt_rmb_checkin
+
+    BUTTON WT_RMB_CHECKOUT
+    LABEL 检出
+    MESSAGE 检出选定文档。
+    SENSITIVITY ON
+    ACTIONS wt_rmb_checkout
+
+    BUTTON WT_RMB_UPDATE
+    LABEL 更新
+    MESSAGE 更新选定文档。
+    SENSITIVITY ON
+    ACTIONS wt_rmb_update
+
+    BUTTON WT_RMB_LOCK
+    LABEL 锁定
+    MESSAGE 锁定选定文档。
+    SENSITIVITY ON
+    ACTIONS wt_rmb_lock
+
+    BUTTON WT_RMB_UNLOCK
+    LABEL 解锁
+    MESSAGE 解锁选定文档。
+    SENSITIVITY ON
+    ACTIONS wt_rmb_unlock
+
+    BUTTON WT_RMB_UWGM_PROPERTIES
+    LABEL 查看信息
+    MESSAGE 启动文档的信息详细页面。
+    SENSITIVITY ON
+    ACTIONS wt_rmb_uwgm_properties
+   
+END_OF_MENU
+HIDE WT_RMB_CTX_MENU
+
+MENU WT_CHECKIN
+   
+   BUTTON WT_CHECKIN_CUSTOM
+   LABEL 自定义检入
+   MESSAGE 交互式检入活动文档。
+   SENSITIVITY OFF
+   ACTIONS wt_checkin_custom
+   
+   BUTTON WT_CHECKIN_AUTO
+   LABEL 自动检入
+   MESSAGE 使用操作的默认值检入文档。
+   SENSITIVITY OFF
+   ACTIONS wt_checkin_auto
+   
+END_OF_MENU
+
+MENU WT_UPDATE
+
+   BUTTON WT_UPDATE_CURRENT
+   LABEL 更新活动模型
+   MESSAGE 更新 Windchill 中包含信息的活动文档。
+   SENSITIVITY OFF
+   ACTIONS wt_update_current
+   
+   BUTTON WT_UPDATE_IN_SESSION
+   LABEL 更新所有模型
+   MESSAGE 使用 Windchill 中的信息更新所有打开的文档。
+   SENSITIVITY OFF
+   ACTIONS wt_update_in_session
+
+END_OF_MENU
+   
+AFTER UG_FILE_NEW
+   
+   BUTTON WT_NEW_ITEM
+   LABEL 新建 CAD 文档...
+   MESSAGE 在工作区中创建新的 CAD 文档。
+   SENSITIVITY ON
+   ACTIONS wt_new_item
+   
+END_OF_AFTER
+
+AFTER UG_FILE_OPEN
+   
+   BUTTON WT_OPEN_ITEM
+   LABEL 从 Windchill 打开...
+   MESSAGE 从工作区或公用区打开文档。
+   SENSITIVITY ON
+   ACTIONS wt_open_item
+   
+END_OF_AFTER
+
+
+AFTER UG_FILE_SAVE_PART
+   
+   BUTTON WT_SAVE_WORKSPACE
+   LABEL 保存到工作区
+   MESSAGE 将活动文件及其参考复制到主工作区。
+   SENSITIVITY OFF
+   ACTIONS/PRE E:\cache\checkChar.vb
+   ACTIONS wt_save_workspace
+   ACTIONS/POST wt_post_save_as_event wt_post_save_all_event wt_post_save_event
+   
+END_OF_AFTER
+
+MODIFY
+
+    BUTTON UG_FILE_SAVE_AS
+    ACTIONS/PRE E:\cache\checkChar.vb wt_pre_save_as_event
+    ACTIONS/POST wt_post_save_as_event
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_SAVEAS_AND_CLOSE
+    ACTIONS/PRE E:\cache\checkChar.vb wt_pre_save_as_and_close_event
+    ACTIONS/POST wt_post_file_close_selected_event
+
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_SAVE_PART
+    
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_SAVE_WORK_ONLY
+    ACTIONS/PRE E:\cache\checkChar.vb  wt_pre_save_work_event
+    ACTIONS/POST wt_post_save_event
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_SAVE_AND_CLOSE
+    ACTIONS/PRE E:\cache\checkChar.vb wt_pre_save_and_close_event
+    ACTIONS/POST wt_post_file_close_selected_event
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_SAVE_ALL
+    ACTIONS/PRE E:\cache\checkChar.vb wt_pre_save_all_event
+    ACTIONS/POST wt_post_save_all_event
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_SAVEALL_AND_CLOSE
+    ACTIONS/PRE E:\cache\checkChar.vb  wt_pre_save_all_and_close_event
+    ACTIONS/POST wt_post_file_close_selected_event
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_OPEN
+    ACTIONS/PRE E:\cache\checkChar.vb wt_pre_file_open_event
+    ACTIONS/POST wt_post_file_open_event
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_NEW
+    ACTIONS/PRE E:\cache\checkChar.vb wt_pre_file_new_event
+    ACTIONS/POST wt_post_file_new_event
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_CLOSE_SELECTED
+    ACTIONS/PRE E:\cache\checkChar.vb wt_pre_file_close_selected_event
+    ACTIONS/POST wt_post_file_close_selected_event
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_CLOSE_ALL
+    ACTIONS/PRE E:\cache\checkChar.vb wt_pre_file_close_all_event
+    ACTIONS/POST wt_post_file_close_all_event
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_REOPEN_SELECTED
+    ACTIONS/PRE E:\cache\checkChar.vb wt_pre_file_reopen_selected_event
+    ACTIONS/POST wt_post_file_reopen_selected_event
+    
+END_OF_MODIFY
+
+MODIFY
+
+    BUTTON UG_FILE_REOPEN_ALL
+    ACTIONS/PRE E:\cache\checkChar.vb wt_pre_file_reopen_all_event
+    ACTIONS/POST wt_post_file_reopen_all_event
+    
+END_OF_MODIFY
+
+AFTER UG_FILE_SAVE_BOOKMARK
+   
+   SEPARATOR
+
+   CASCADE_BUTTON/FOLDED WT_RMB_CTX_MENU
+   LABEL PTC Windchill
+
+   CASCADE_BUTTON/FOLDED WT_CHECKIN
+   LABEL 检入
+   
+   BUTTON WT_CHECKOUT
+   LABEL 检出
+   MESSAGE 检出活动文档。
+   SENSITIVITY OFF
+   ACTIONS wt_checkout
+   
+   BUTTON WT_REVISE_CHECKOUT
+   LABEL 修订并检出
+   MESSAGE 修订并检出活动文档。
+   SENSITIVITY OFF
+   ACTIONS wt_revise_checkout
+   
+   BUTTON WT_UNDOCHECKOUT
+   LABEL 撤消检出
+   MESSAGE 取消检出活动模型。
+   SENSITIVITY OFF
+   ACTIONS wt_undocheckout
+   
+   CASCADE_BUTTON/FOLDED WT_UPDATE
+   LABEL 更新
+   
+END_OF_AFTER
+   
+MENU UG_TOOLBOX
+
+   SEPARATOR
+
+   TOGGLE_BUTTON WT_SAVE_VIEWABLE_WITH_MODELS
+   LABEL 将可视项随模型一起保存
+   MESSAGE 启用/禁用保存时生成可视项。
+   SENSITIVITY OFF
+   ACTIONS wt_save_viewable_with_models
+
+   BUTTON WT_WGM
+   LABEL Workgroup Manager...
+   MESSAGE 打开 Workgroup Manager。
+   SENSITIVITY ON
+   ACTIONS wt_wgm
+   
+   BUTTON WT_SVR_MANAGER
+   LABEL 服务器管理...
+   MESSAGE 打开服务器管理。
+   SENSITIVITY ON
+   ACTIONS wt_svr_manager
+   
+   BUTTON WT_EVENT_MANAGER
+   LABEL 事件管理...
+   MESSAGE 打开“事件管理”以查看主服务器的 PDM 事务状况。
+   SENSITIVITY ON
+   ACTIONS wt_event_manager
+   
+END_OF_MENU
+
+MENU UG_HELP
+
+   SEPARATOR
+
+   BUTTON WT_HELP_WGM
+   LABEL Workgroup Manager 帮助...
+   MESSAGE 打开 Workgroup Manager 帮助。
+   SENSITIVITY ON
+   ACTIONS wt_help_wgm
+
+END_OF_MENU
+
+AFTER UG_ASSY_INSERT_COMPONENT
+
+   SEPARATOR
+
+   BUTTON WT_INSERT_COMP
+   LABEL 从 Windchill 插入...
+   MESSAGE 从 Windchill 插入元件。
+   SENSITIVITY OFF
+   ACTIONS wt_insert_comp
+
+   SEPARATOR
+
+END_OF_AFTER
+
+MODIFY
+
+    BUTTON UG_ASSY_INSERT_COMPONENT
+    ACCELERATOR Ctrl+Shift+Insert
+    
+END_OF_MODIFY
+
+MODIFY
+
+    APPLICATION_BUTTON UG_APP_MODELING
+    MENU_FILES ug_modelling_addon.men
+    
+END_OF_MODIFY
+
+AFTER UG_FILE_EXPORT_CATIAV5
+
+   SEPARATOR
+
+   BUTTON WT_EXPORT_TO_WINDCHILL
+   LABEL 导出至 Windchill
+   MESSAGE 将活动模型的 JT 导出到工作区
+   SENSITIVITY OFF
+   ACTIONS wt_export_to_windchill
+
+END_OF_AFTER
